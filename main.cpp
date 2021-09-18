@@ -211,12 +211,10 @@ void print_mat(const Mat& input) {
     }
 }
 
-
-int main() {
-    cout << "Hello, World!" << endl;
+void test_func(int c, int w, int h, int d, const vector<int>& stride, const vector<int>& kernel, const vector<int>& dilation) {
     // Generate data
-    float* data = (float *)malloc(3 * 4 * 5 * 6 * sizeof(float));
-    for(int i = 1; i < 3*4*5*6+1; ++i) {
+    float* data = (float *)malloc(c * w * h * d * sizeof(float));
+    for(int i = 1; i < c*w*h*d+1; ++i) {
         data[i-1] = static_cast<float>(i);
     }
     Mat input = Mat(4,5,6,3, data);
@@ -225,11 +223,19 @@ int main() {
     Option opt = Option();
 
     // conv operation, stride, kernel, dilation
-    conv3d(input, output, opt, {1,1,1}, {2,2,2}, {3,2,3});
+    conv3d(input, output, opt, stride, kernel, dilation);
 
     print_mat(output);
 
     delete data;
+}
+
+
+int main() {
+    cout << "Hello, World!" << endl;
+
+    // test case 1
+    test_func(3,4,5,6,{1,1,1}, {2,2,2}, {2,2,2});
 
     return 0;
 }
