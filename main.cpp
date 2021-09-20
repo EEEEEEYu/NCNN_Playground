@@ -235,7 +235,7 @@ int main() {
     cout << "Hello, World!" << endl;
 
     // test case 1
-    test_func(3,4,5,6,{1,1,1}, {2,2,2}, {2,2,2});
+    test_func(3,4,5,6,{1,1,1}, {1,1,1}, {1,1,1});
 
     return 0;
 }
